@@ -8,6 +8,6 @@
                 {!! $post->body !!}
             </div>
         </article>
-        <a href="/">Go Back</a>
+        <a href="/" class="anchor" id="top">Go Back</a>
 
 </x-layout>
