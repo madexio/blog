@@ -5,7 +5,11 @@
       href="/app.css">
 <body>
     <article>
-        <?= $post; ?>
+        <h1><?=/** @var  $post */
+            $post->title?></h1>
+        <div>
+            <?=$post->body?>
+        </div>
     </article>
     <a href="/">Go Back</a>
 </body>
