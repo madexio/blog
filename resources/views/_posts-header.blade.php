@@ -6,11 +6,6 @@
     <h2 class="inline-flex mt-2">By Lary Laracore <img src="/images/lary-head.svg"
                                                        alt="Head of Lary the mascot"></h2>
 
-    <p class="text-sm mt-14">
-        Another year. Another update. We're refreshing the popular Laravel series with new content. I'm going to keep
-        you guys up to speed with what's going on!
-    </p>
-
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-8">
         <!--  Category -->
         <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
@@ -18,10 +13,13 @@
                 <x-slot name="trigger">
                     <button class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-32 text-left flex lg:inline-flex">
                         {{isset($currentCategory) ? ucwords($currentCategory->name) : "Categories"}}
-                        <x-icon name="down-arrow" class="absolute pointer-events-none" style="right: 12px;"/>
+                        <x-icon name="down-arrow"
+                                class="absolute pointer-events-none"
+                                style="right: 12px;"/>
                     </button>
                 </x-slot>
-                <x-dropdown-item href="/" :active="request()->routeIs('home')">
+                <x-dropdown-item href="/"
+                                 :active="request()->routeIs('home')">
                     All
                 </x-dropdown-item>
                 @foreach ($categories as $category)
