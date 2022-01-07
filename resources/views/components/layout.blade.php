@@ -22,10 +22,36 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
-                <a href="/"
-                   class="text-xs font-bold uppercase">Home Page
-                </a>
+            <div class="mt-8 md:mt-0 flex items-center">
+                @auth
+                    <span class="text-xs font-bold uppercase"> Welcome back, {{auth()->user()->name}}
+                    </span>
+                    <form action="/logout"
+                          method="post">
+                    @csrf
+                    <button type="submit"
+                            class="bg-gray-200 ml-3 rounded-full text-xs font-semibold uppercase py-3 px-5">
+                        Log Out
+                    </button>
+                    </form>
+                @else
+                    <form action="/register"
+                          method="get">
+                        @csrf
+                        <button type="submit"
+                                class="bg-gray-200 ml-3 rounded-full text-xs font-semibold uppercase py-3 px-5">
+                            Register
+                        </button>
+                    </form>
+                    <form action="/login"
+                          method="get">
+                        @csrf
+                        <button type="submit"
+                                class="bg-gray-200 ml-3 rounded-full text-xs font-semibold uppercase py-3 px-5">
+                            Log In
+                        </button>
+                    </form>
+                @endauth
 
                 <a href="#"
                    class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
