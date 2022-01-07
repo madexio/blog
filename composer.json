@@ -13,16 +13,17 @@
         "laravel/tinker": "^2.5"
     },
     "require-dev": {
-        "spatie/yaml-front-matter": "2.0.6",
+        "barryvdh/laravel-debugbar": "v3.6.0",
+        "barryvdh/laravel-ide-helper": "^2.10",
+        "beyondcode/expose": "~2.0.2",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
+        "laravel/valet": "v2.18.4",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
         "phpunit/phpunit": "^9.5.10",
-        "barryvdh/laravel-debugbar": "v3.6.0",
-        "laravel/valet": "v2.18.4",
-        "beyondcode/expose": "~2.0.2"
+        "spatie/yaml-front-matter": "2.0.6"
     },
     "autoload": {
         "psr-4": {
@@ -59,7 +60,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
