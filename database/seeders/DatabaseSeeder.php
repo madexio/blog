@@ -17,13 +17,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $user = User::factory()->create([
-            "name"=>"Matthew Proulx"
+            "name"=>"Matthew Proulx",
+            "username"=>"Madexio"
         ]);
         Post::factory(5)->create([
             "user_id"=>$user->id
         ]);
         $user = User::factory()->create([
-            "name"=>"Megan Ellis"
+            "name"=>"Megan Ellis",
+            "username"=>"ClaretRose"
         ]);
         Post::factory(5)->create([
             "user_id"=>$user->id
