@@ -1,4 +1,3 @@
-
 <x-layout>
     <section class="px-6 py-8">
 
@@ -59,6 +58,12 @@
                         {!! $post->body !!}
                     </div>
                 </div>
+                <section class="col-span-8 col-start-5 mt-10 space-y-6">
+                    <x-post-comment/>
+                    <x-post-comment/>
+                    <x-post-comment/>
+                    <x-post-comment/>
+                </section>
             </article>
         </main>
     </section>
