@@ -3,6 +3,7 @@
 
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
+                {{--Post details--}}
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
                     <img src="/images/illustration-1.png"
                          alt=""
@@ -13,14 +14,15 @@
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
-                        <img src="/images/lary-avatar.svg"
-                             alt="Lary avatar">
+                        <img src="https://i.pravatar.cc/60?u={{$post->user_id}}"
+                             class="rounded-xl"
+                             alt="">
                         <div class="ml-3 text-left">
-                            <a href="/?authors={{$post->author->username}}">{{$post->author->name}}</a>
+                            <strong><a href="/?authors={{$post->author->username}}">{{$post->author->name}}</a></strong>
                         </div>
                     </div>
                 </div>
-
+                {{--Back to posts--}}
                 <div class="col-span-8">
                     <div class="hidden lg:flex justify-between mb-6">
                         <a href="/"
@@ -58,27 +60,54 @@
                         {!! $post->body !!}
                     </div>
                 </div>
+                {{--Comments--}}
                 <section class="col-span-8 col-start-5 mt-10 space-y-6">
-                    <form action="/#"
-                          class="border-2 border-blue-200 p-6 rounded-xl bg-blue-100"
-                          method="post">
-                        @csrf
-                        <header class="flex items-center">
-                            <img src="https://i.pravatar.cc/60?u={{auth()->id()}}"
-                                 class="rounded-xl"
-                                 alt="">
-                            <h2 class="ml-4">New comment</h2>
+                    @auth
+                        <form action="/posts/{{$post->slug}}/comments"
+                              class="border-2 border-blue-100 p-6 rounded-xl bg-blue-50"
+                              method="post">
+                            @csrf
+                            <header class="flex items-center">
+                                <img src="https://i.pravatar.cc/60?u={{auth()->id()}}"
+                                     class="rounded-xl"
+                                     alt="">
+                                <h2 class="ml-4">New comment</h2>
 
-                        </header>
-                        <div class="mt-6">
-                            <textarea name="body" class="w-full text-sm focus:outline-none focus:ring rounded-l" cols="30" rows="10" placeholder="Insert comment here"></textarea>
+                            </header>
+                            <div class="mt-6">
+                                <textarea name="body"
+                                          class="w-full text-sm focus:outline-none focus:ring rounded-l"
+                                          cols="30"
+                                          rows="10"
+                                          placeholder="Insert comment here"></textarea>
+                            </div>
+                            <div class="flex justify-end mt-2">
+                                <x-basic-button>
+                                    Post
+                                </x-basic-button>
+
+                            </div>
+                        </form>
+                    @else
+                        <div class="flex space-x-3">
+                            <form action="/login"
+                                  method="get">
+
+                                <x-basic-button>
+                                    Log in to comment
+                                </x-basic-button>
+
+                            </form>
+                            <form action="/register"
+                                  method="get">
+
+                                <x-basic-button>
+                                    Register to comment
+                                </x-basic-button>
+
+                            </form>
                         </div>
-                        <div class="flex justify-end mt-2">
-                            <button type="submit" class="bg-gray-300 rounded-full text-xs font-semibold uppercase py-3 px-5">
-                                Post
-                            </button>
-                        </div>
-                    </form>
+                    @endauth
                     @foreach($post->comments as $comment)
                         <x-post-comment :comment="$comment"/>
                     @endforeach

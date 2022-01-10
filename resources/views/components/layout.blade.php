@@ -22,39 +22,36 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0 flex items-center">
+            <div class="mt-8 md:mt-0 flex items-center space-x-2">
                 @auth
                     <span class="text-xs font-bold uppercase"> Welcome back, {{auth()->user()->name}}
                     </span>
                     <form action="/logout"
                           method="post">
-                    @csrf
-                    <button type="submit"
-                            class="bg-gray-200 ml-3 rounded-full text-xs font-semibold uppercase py-3 px-5">
-                        Log Out
-                    </button>
+                        @csrf
+                        <x-basic-button>
+                            Log Out
+                        </x-basic-button>
                     </form>
                 @else
                     <form action="/register"
                           method="get">
                         @csrf
-                        <button type="submit"
-                                class="bg-gray-200 ml-3 rounded-full text-xs font-semibold uppercase py-3 px-5">
+                        <x-basic-button>
                             Register
-                        </button>
+                        </x-basic-button>
                     </form>
                     <form action="/login"
                           method="get">
                         @csrf
-                        <button type="submit"
-                                class="bg-gray-200 ml-3 rounded-full text-xs font-semibold uppercase py-3 px-5">
+                        <x-basic-button>
                             Log In
-                        </button>
+                        </x-basic-button>
                     </form>
                 @endauth
 
                 <a href="#"
-                   class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                   class="bg-blue-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
