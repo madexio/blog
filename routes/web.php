@@ -23,19 +23,29 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get("ping", function() {
+Route::post("newsletter", function () {
+    request()->validate(["email" => "required|email"]);
     $client = new \MailchimpMarketing\ApiClient();
 
     $client->setConfig([
         'apiKey' => config("services.mailchimp.key"),
-        'server' => "us20"
+        'server' => "us20",
     ]);
 
-    $response = $client->lists->addListMember("d0bf16600d", [
-        "email_address" => "matthewadirenproulx@gmail.com",
-        "status" => "subscribed"
-    ]);
-    dd($response);
+    try
+    {
+        $response = $client->lists->addListMember("d0bf16600d", [
+            "email_address" => request("email"),
+            "status"        => "subscribed",
+        ]);
+    } catch (\Exception $e)
+    {
+        throw \Illuminate\Validation\ValidationException::withMessages([
+            "email" => "This email could not be added to our newsletter list"
+        ]);
+    }
+
+    return redirect("/")->with("success", "Thank you for signing up for our newsletter");
 });
 
 Route::get('/', [PostController::class, "index"])->name("home");

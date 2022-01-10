@@ -66,7 +66,8 @@
 
         {{$slot}}
         {{--Footer--}}
-        <footer id="newsletter" class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
+        <footer id="newsletter"
+                class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
             <img src="/images/lary-newsletter-icon.svg"
                  alt=""
                  class="mx-auto -mb-6"
@@ -78,8 +79,9 @@
                 <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
                     <form method="POST"
-                          action="#"
+                          action="/newsletter"
                           class="lg:flex text-sm">
+                        @csrf
                         <div class="lg:py-3 lg:px-5 flex items-center">
                             <label for="email"
                                    class="hidden lg:inline-block">
@@ -87,10 +89,16 @@
                                      alt="mailbox letter">
                             </label>
 
-                            <input id="email"
-                                   type="text"
-                                   placeholder="Your email address"
-                                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+                            <div>
+                                <input id="email"
+                                        name="email"
+                                        type="text"
+                                        placeholder="Your email address"
+                                        class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+                                @error("email")
+                                <span class="text-red-500 text-xs mt-1">{{$message}}</span>
+                                @enderror
+                            </div>
                         </div>
 
                         <button type="submit"

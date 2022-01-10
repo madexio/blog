@@ -16,7 +16,8 @@
                       cols="30"
                       rows="10"
                       placeholder="Insert comment here"
-                      required></textarea> @error("body") <span class="text-red-500 text-xs mt-1">{{$message}}</span>
+                      required> </textarea>
+            @error("body") <span class="text-red-500 text-xs mt-1">{{$message}}</span>
             @enderror
         </div>
         <div class="flex justify-end mt-2">
