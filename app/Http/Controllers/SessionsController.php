@@ -19,15 +19,15 @@ class SessionsController extends Controller
             "password" => ["required"],
         ]);
 
-        if (auth()->attempt($attributes))
+        if (!auth()->attempt($attributes))
         {
-            session()->regenerate();
-            return redirect("/")->with("success", "Logged in successfully");
+            throw ValidationException::withMessages([
+                "email"=>"Your provided credentials could not be validated"
+            ]);
         }
 
-        throw ValidationException::withMessages([
-            "email"=>"Your provided credentials could not be validated"
-        ]);
+        session()->regenerate();
+        return redirect("/")->with("success", "Logged in successfully");
     }
 
     public function destroy()
