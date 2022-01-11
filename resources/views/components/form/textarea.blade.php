@@ -7,6 +7,6 @@
               rows="{{$rows}}"
               cols="{{$cols}}"
               placeholder="{{$placeholder}}"
-              required>{{old($name)}}</textarea>
+              required>{{$slot ?? old($name)}}</textarea>
     <x-form.error name={{$name}}/>
 </div>
