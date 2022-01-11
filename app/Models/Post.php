@@ -40,6 +40,10 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Post whereUpdatedAt($value)
  * @method static Builder|Post whereUserId($value)
  * @mixin Eloquent
+ * @property string|null $thumbnail
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @method static Builder|Post whereThumbnail($value)
  */
 class Post extends Model
 {

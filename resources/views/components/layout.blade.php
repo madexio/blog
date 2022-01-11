@@ -36,12 +36,14 @@
                             <x-basic-button class="text-xs font-bold uppercase"> Welcome back, {{auth()->user()->name}}
                             </x-basic-button>
                         </x-slot>
-                        <x-dropdown-item href="/admin/posts/create"
-                                         :active="request()->is('admin/posts/create')">New Post
-                        </x-dropdown-item>
-                        <x-dropdown-item href="/admin/posts"
-                                         :active="request()->is('admin/posts')">Edit Posts
-                        </x-dropdown-item>
+                        @admin
+                            <x-dropdown-item href="/admin/posts/create"
+                                             :active="request()->is('admin/posts/create')">New Post
+                            </x-dropdown-item>
+                            <x-dropdown-item href="/admin/posts"
+                                             :active="request()->is('admin/posts')">Edit Posts
+                            </x-dropdown-item>
+                        @endadmin
                         <x-dropdown-item href="#"
                                          x-data="{}"
                                          @click.prevent="document.querySelector('#logout-form').submit()">Log out
