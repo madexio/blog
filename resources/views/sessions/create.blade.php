@@ -5,41 +5,11 @@
             </h1>
             <form method="POST"
                   action="/sessions"
-                  class="mt-10"
+                  class="mt-10 space-y-4"
             >
                 @csrf
-                <div class="mb-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-                           for="email">
-                        E-mail
-                    </label>
-                    <input class="border border-gray-400 p-2 w-full"
-                           type="email"
-                           name="email"
-                           value="{{old('email')}}"
-                           id="email"
-                           required
-                    >
-                    @error("email")
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-                           for="password">
-                        Password
-                    </label>
-                    <input class="border border-gray-400 p-2 w-full"
-                           type="password"
-                           name="password"
-                           id="password"
-                           required
-                    >
-                    @error("password")
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-
+                <x-form.input name="email" type="email" autocomplete="username"/>
+                <x-form.input name="password" type="password" autocomplete="new-password"/>
 
                 <div class="mb-6">
                     <button type="submit"

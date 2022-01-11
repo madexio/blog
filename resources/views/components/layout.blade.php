@@ -31,15 +31,26 @@
 
             <div class="mt-8 md:mt-0 flex items-center space-x-2">
                 @auth
-                    <span class="text-xs font-bold uppercase"> Welcome back, {{auth()->user()->name}}
-                    </span>
-                    <form action="/logout"
-                          method="post">
-                        @csrf
-                        <x-basic-button>
-                            Log Out
-                        </x-basic-button>
-                    </form>
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <x-basic-button class="text-xs font-bold uppercase"> Welcome back, {{auth()->user()->name}}
+                            </x-basic-button>
+                        </x-slot>
+                        <x-dropdown-item href="/admin/posts/create"
+                                         :active="request()->is('admin/posts/create')">New Post
+                        </x-dropdown-item>
+                        <x-dropdown-item href="#"
+                                         x-data="{}"
+                                         @click.prevent="document.querySelector('#logout-form').submit()">Log out
+                        </x-dropdown-item>
+                        <form id="logout-form"
+                              action="/logout"
+                              method="post"
+                              class="hidden">
+                            @csrf
+                        </form>
+                    </x-dropdown>
+
                 @else
                     <form action="/register"
                           method="get">
@@ -91,10 +102,10 @@
 
                             <div>
                                 <input id="email"
-                                        name="email"
-                                        type="text"
-                                        placeholder="Your email address"
-                                        class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+                                       name="email"
+                                       type="text"
+                                       placeholder="Your email address"
+                                       class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                                 @error("email")
                                 <span class="text-red-500 text-xs mt-1">{{$message}}</span>
                                 @enderror

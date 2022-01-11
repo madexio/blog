@@ -4,74 +4,14 @@
             <h1 class="text-center font-bold text-xl">Register</h1>
             <form method="POST"
                   action="/register"
-                  class="mt-10"
+                  class="mt-10 space-y-4"
             >
                 @csrf
-                <div class="mb-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-                           for="name">
-                        Name
-                    </label>
-                    <input class="border border-gray-400 p-2 w-full"
-                           type="text"
-                           name="name"
-                           value="{{old('name')}}"
-                           id="name"
-                           required
-                    >
-                    @error("name")
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-                           for="username">
-                        Username
-                    </label>
-                    <input class="border border-gray-400 p-2 w-full"
-                           type="text"
-                           name="username"
-                           value="{{old('username')}}"
-                           id="username"
-                           required
-                    >
-                    @error("username")
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-                           for="email">
-                        e-mail
-                    </label>
+                <x-form.input name="name"/>
+                <x-form.input name="username"/>
+                <x-form.input name="email" type="email"/>
+                <x-form.input name="password" type="password"/>
 
-                    <input class="border border-gray-400 p-2 w-full"
-                           type="email"
-                           name="email"
-                           value="{{old('email')}}"
-                           id="email"
-                           required
-                    >
-                    @error("email")
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-
-                </div>
-                <div class="mb-6">
-                    <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-                           for="password">
-                        Password
-                    </label>
-                    <input class="border border-gray-400 p-2 w-full"
-                           type="password"
-                           name="password"
-                           id="password"
-                           required
-                    >
-                    @error("password")
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
                 <div class="mb-6">
                     <button type="submit"
                             class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
